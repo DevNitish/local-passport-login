@@ -6,21 +6,23 @@
   <link rel="stylesheet" href="./includes/css/bootstrap.min.css" >
   <link rel="stylesheet" href="./includes/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--Support javascript files-->
-    <script src="./includes/script/jquery-3.1.1.slim.min.js" ></script>
-    <script src="./includes/script/tether.min.js" ></script>
-    <script src="./includes/script/bootstrap.min.js"></script>
+    <script src="./includes/js/jquery-3.1.1.slim.min.js" ></script>
+    <script src="./includes/js/tether.min.js" ></script>
+    <script src="./includes/js/bootstrap.min.js"></script>
   
-    <script src="./includes/script/fe4a02cae5.js"></script>
+    <script src="./includes/js/fe4a02cae5.js"></script>
     <!--for font-awesome-->
-    <script src="./includes/script/angular.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>-->
-    <script src="./includes/script/angular-animate.js"></script>
-    <script src="./includes/script/angular-ui-router.min.js"></script>
+    <script src="./includes/js/angular.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script> -->
+    <script src="./includes/js/angular-animate.js"></script>
+    <script src="./includes/js/angular-ui-router.js"></script>
+ 
+    
     <style>
         body        { padding-top:80px; }
     </style>
 </head>
-<body>
+<body ng-app="myapp" ng-controller="myctrl" ng-cloak>
 <div class="container">
 
     <div class="jumbotron text-center">
@@ -32,6 +34,12 @@
         <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
     </div>
 
+    <div ui-view></div>
+
+    <h6>{{myname}}</h6>
+    <a ui-sref="login" class="btn btn-primary">Login</a>
 </div>
+<script src="app.js"></script>
+<script src="uiroute.js"></script>
 </body>
 </html>
