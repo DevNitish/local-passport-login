@@ -5,6 +5,7 @@ var express  = require('express');
 var app      = express();
 var port=process.env.PORT||8080;
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var passport = require('passport');
 var flash    = require('connect-flash');
 
@@ -16,7 +17,21 @@ var session      = require('express-session');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+//mongoose.connect(configDB.url); // connect to our database
+app.use(function(req, res, next) {
+    if (mongoose.connection.readyState != 1) {
+      mongoose.connect(configDB.url, function(error) {
+        if (error) {
+          console.log("error while connecting to mongo");
+          throw error;
+        } // Handle failed connection
+        console.log('conn ready:  ' + mongoose.connection.readyState);
+        next();
+      });
+    } else {
+      next();
+    }
+  });
 
 require('./config/passport')(passport); // pass passport for configuration
 
