@@ -38,10 +38,11 @@ require('./config/passport')(passport); // pass passport for configuration
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+app.use(bodyParser.json()); // get information from html forms
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
- 
+app.use(express.static(__dirname + '/views'));
 // required for passport
 app.use(session({ secret: 'thisisnitish' })); // session secret
 app.use(passport.initialize());
